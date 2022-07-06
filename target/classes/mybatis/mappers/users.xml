@@ -2,10 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="users">
-<insert id="usersInsert">
-	insert into users 
-	values(seq_users_no.nextval, #{id}, #{userName},#{password},sysdate)
-</insert>
+	<select id="selectUsersInfo" parameterType="UsersVo" resultType="UsersVo">
+			select  userNo, 
+					userName 
+			from users 
+			where id = #{id}, 
+			and password = #{password}
+	</select>
 
 
+	<insert id="usersInsert">
+		insert into users 
+		values(seq_users_no.nextval, #{id}, #{userName},#{password},sysdate)
+	</insert>
 </mapper>
