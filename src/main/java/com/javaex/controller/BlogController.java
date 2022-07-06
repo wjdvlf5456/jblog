@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.javaex.dao.BlogDao;
 import com.javaex.vo.BlogVo;
@@ -35,7 +36,7 @@ public class BlogController {
 		return "blog/admin/blog-admin-basic";
 	};
 	
-	@RequestMapping("/modifyBlog")
+	@RequestMapping(value ="/modifyBlog",method = {RequestMethod.GET,RequestMethod.POST})
 	public String modifyBlog(@ModelAttribute BlogVo blogVo){
 		
 		
