@@ -5,8 +5,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.UsersService;
 import com.javaex.vo.UsersVo;
@@ -72,10 +74,32 @@ public class UsersController {
 		System.out.println("UsersController > join");
 		System.out.println("UsersController로 받은 정보: " + usersVo);
 		int count = usersService.usersInsert(usersVo);
-		System.out.println(count + "건 등록되었습니다.");
 		
-		return "redirect:./joinSuccess";
+		if (count>0) {
+			System.out.println(count + "건 등록되었습니다.");
+			return "redirect:./joinSuccess";
+			
+		} else {
+			return "user/joinForm";
+
+		}
+		
 	};
+	
+	// ================================ 중복체크(ajax + json) ================================
+	@ResponseBody
+	@RequestMapping(value = "check", method = {RequestMethod.GET, RequestMethod.POST})
+	public Boolean check(@RequestBody UsersVo usersVo) {
+		System.out.println("UsersController > check");
+		Boolean result = usersService.check(usersVo);
+		System.out.println(result);
+		
+		return result;
+	};
+	
+	
+	
+	
 	// ================================  회원가입 성공 시 ================================
 	@RequestMapping(value = "joinSuccess", method = {RequestMethod.GET, RequestMethod.POST})
 	public String joinSuccess() {

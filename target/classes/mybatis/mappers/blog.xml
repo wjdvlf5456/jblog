@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="blog"></mapper>
+<mapper namespace="blog">
+	<select id="selectBlog">
+		select  b.id, 
+				b.blogTitle, 
+				b.logoFiel, 
+				c.cateNo, 
+				c.cateName, 
+				c.description, 
+				c.regDate  
+		from blog b 
+		left outer join category.c 
+		on c.id = b.id 
+	</select>
+</mapper>

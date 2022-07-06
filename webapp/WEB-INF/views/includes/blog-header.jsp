@@ -3,7 +3,7 @@
 
 <div id="header" class="clearfix">
 	<h1>
-		<a href="">"${authUser.userName}"의 블로그입니다.</a>
+		<a href="">${authUser.userName}의 블로그입니다.</a>
 	</h1>
 	<ul class="clearfix">
 

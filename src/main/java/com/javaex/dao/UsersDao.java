@@ -18,6 +18,12 @@ public class UsersDao {
 		return uVo;
 	};
 	
+	public int check(String id) {
+		int count = sqlSession.selectOne("users.check",id);
+		System.out.println(count + "건");
+		return count;
+	};
+	
 	
 	public int usersInsert(UsersVo usersVo) {
 		int count = sqlSession.insert("users.usersInsert",usersVo);

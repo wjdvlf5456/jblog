@@ -7,6 +7,7 @@ public class BlogVo {
 	private String blogTitle;
 	private String logoFile;
 	
+	
 	//생성자
 	public BlogVo() {
 	}

@@ -4,12 +4,18 @@
 <mapper namespace="users">
 	<select id="selectUsersInfo" parameterType="UsersVo" resultType="UsersVo">
 			select  userNo, 
-					userName 
+					userName, 
+					id 
 			from users 
 			where id = #{id} 
 			and password = #{password}
 	</select>
-
+	
+	<select id="check" parameterType="String" resultType="int">
+		select count(id) count 
+		from users 
+		where id = #{id}
+	</select>
 
 	<insert id="usersInsert">
 		insert into users 

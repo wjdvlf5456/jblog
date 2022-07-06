@@ -6,7 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>JBlog</title>
+
+<!-- css -->
+<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
+
+<!-- js -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
 
 </head>
 <body>
@@ -15,7 +22,6 @@
 		<!-- 메인 해더 -->
 		<c:import url="/WEB-INF/views/includes/main-header.jsp"></c:import>
 	
-
 		<div>		
 			<form id="joinForm" method="post" action="${pageContext.request.contextPath}/user/join">
 				<table>
@@ -31,7 +37,7 @@
 		      		</tr>
 		      		<tr>
 		      			<td></td>
-		      			<td id="tdMsg" colspan="2">사용할 수 있는 아이디 입니다.</td>
+		      			<td id="tdMsg" colspan="2"></td>
 		      		</tr> 
 		      		<tr>
 		      			<td><label for="txtPassword">패스워드</label> </td>
@@ -66,6 +72,53 @@
 	</div>
 
 </body>
+<script type="text/javascript">
+//아이디 중복체크
+$("#btnIdCheck").on("click", function(){
+	console.log("아이디 중복체크")
+	
+	var id = $("#txtId").val();
+	
+	var usersVo = {
+		id: id
+	};
+	
+		$.ajax({
+		url : "${pageContext.request.contextPath}/user/check",
+		type : "post",
+		contentType : "application/json",
+		data : JSON.stringify(usersVo), //js객체를 JSON문자열로 변환
 
+		dataType : "json",
+		success : function(result) {
+			if (result == true) {
+			$("#tdMsg").text("사용할 수 있는 아이디 입니다.").css("color","black");
+			
+			} else {
+			$("[name='id']").val("");
+			$("#tdMsg").text("다른 아이디로 가입해 주세요").css("color","red");
 
+			}
+
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+	// ajax 
+	
+});
+/*
+$("#btnJoin").on("click",function(){
+	if ("#chkAgree" == false) {
+		alert("약관에 동의해주세요");
+		return false;
+	} else {
+		return true;
+	}
+	
+});
+*/
+
+</script>
 </html>
