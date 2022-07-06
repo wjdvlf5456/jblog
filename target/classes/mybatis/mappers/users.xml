@@ -6,7 +6,7 @@
 			select  userNo, 
 					userName 
 			from users 
-			where id = #{id}, 
+			where id = #{id} 
 			and password = #{password}
 	</select>
 
