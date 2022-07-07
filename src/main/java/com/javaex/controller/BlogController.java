@@ -34,9 +34,9 @@ public class BlogController {
 	// ========================== 회원가입 시 블로그 생성(ajax) ===========================
 	@ResponseBody
 	@RequestMapping(value = "/blogInsert",method = {RequestMethod.GET,RequestMethod.POST})
-	public boolean blogInsert(@RequestBody BlogVo blogVo) {
-		
-		return true;
+	public void blogInsert(@RequestBody BlogVo blogVo) {
+		System.out.println(blogVo);
+		blogService.blogInsert(blogVo);
 	};
 	
 	
@@ -44,8 +44,12 @@ public class BlogController {
 	
 	// =================================== 내 블로그 관리 ===================================
 	@RequestMapping(value = "/{id}/admin/basic")
-	public String adminBlog(@PathVariable("id")String id) {
+	public String adminBlog(@PathVariable("id")String id,Model model) {
 		System.out.println("BlogController > adminBlog");
+		BlogVo blogVo = blogService.getBlog(id);
+		System.out.println(blogVo);
+		
+		model.addAttribute("blogVo",blogVo);
 		
 		return "blog/admin/blog-admin-basic";
 	};
@@ -53,7 +57,7 @@ public class BlogController {
 	@RequestMapping(value ="/{id}/modifyBlog",method = {RequestMethod.GET,RequestMethod.POST})
 	public String modifyBlog(@PathVariable("id")String id,@RequestParam("blogTitle")String blogTitle, @RequestParam("file") MultipartFile file){
 		System.out.println("BlogController > modifyBlog");
-		System.out.println("id: " + ", blogTitle: " + blogTitle);
+		System.out.println("id: " + id +", blogTitle: " + blogTitle);
 		
 		int count = blogService.blogUpdate(id,blogTitle,file);
 		System.out.println(count + "건 변경");

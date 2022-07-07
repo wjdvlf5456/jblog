@@ -111,9 +111,11 @@ $("#btnIdCheck").on("click", function(){
 $("#btnJoin").on("click",function(){
 	
 	var id = $("#txtId").val();
+	var userName = $("#txtUserName").val() + '님의 블로그입니다.';
 	
 	var blogVo = {
-		id: id
+		id: id, 
+		blogTitle: userName
 	};
 	
 		$.ajax({

@@ -11,15 +11,15 @@
 	</select>
 	
 	<insert id="blogInsert" parameterType="BlogVo">
-		insert into blog
-		values(#{id}, #{blogTitle},#{logoFile})
+		insert into blog 
+		values(#{id},#{blogTitle},#{logoFile})
 	</insert>
 	
 	<update id="blogUpdate" parameterType="BlogVo">
 		<![CDATA[
 			update blog 
 			set blogTitle = #{blogTitle}, 
-				logoFile = #{logoFile} 
+			    logoFile = #{logoFile}  
 			where id = #{id}
 		]]>
 	</update>

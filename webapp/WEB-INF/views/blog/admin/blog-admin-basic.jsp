@@ -28,8 +28,7 @@
 			
 			<div id="admin-content">
 			
-				<form action="${pageContext.request.contextPath}/modifyBlog" method="post" enctype="multipart/form-data">
-				<input type="text" name="id" value="${authUser.id}">
+				<form action="${pageContext.request.contextPath}/${authUser.id}/modifyBlog" method="post" enctype="multipart/form-data">
 	 		      	<table id="admin-basic">
 	 		      		<colgroup>
 							<col style="width: 100px;">

@@ -26,7 +26,7 @@ public class BlogDao {
 	
 	
 	public int blogUpdate(BlogVo blogVo){
-		int count = sqlSession.selectOne("blog.blogUpdate",blogVo);
+		int count = sqlSession.update("blog.blogUpdate",blogVo);
 		
 		return count;
 	};

@@ -27,7 +27,10 @@ public class BlogService {
 	};
 	
 	public int blogInsert(BlogVo blogVo) {
+		blogVo.setLogoFile("");
+		
 		int count = blogDao.blogInsert(blogVo);
+		
 		
 		return count;
 	};
@@ -49,6 +52,8 @@ public class BlogService {
 		
 		//파일경로(디렉토리+저장파일명)
 		String filePath = saveDir+ "/"+ saveName;
+		
+		
 		
 		BlogVo blogVo = new BlogVo(id,blogTitle,saveName);
 		
