@@ -55,10 +55,11 @@ public class BlogController {
 		return "blog/admin/blog-admin-basic";
 	};
 	
+	// =================================== 블로그 제목 또는 사진 변경  ===================================
 	@RequestMapping(value ="/{id}/modifyBlog",method = {RequestMethod.GET,RequestMethod.POST})
 	public String modifyBlog(@PathVariable("id")String id,@RequestParam("blogTitle")String blogTitle, @RequestParam("file") MultipartFile file){
 		System.out.println("BlogController > modifyBlog");
-		System.out.println("id: " + id +", blogTitle: " + blogTitle);
+		System.out.println("id: " + id +", blogTitle: " + blogTitle + ", file: " + file);
 		
 		int count = blogService.blogUpdate(id,blogTitle,file);
 		System.out.println(count + "건 변경");

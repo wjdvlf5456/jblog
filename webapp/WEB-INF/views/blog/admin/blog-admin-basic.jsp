@@ -36,11 +36,18 @@
 						</colgroup>
 			      		<tr>
 			      			<td><label for="textTitle">블로그 제목</label></td>
-			      			<td><input id="textTitle" type="text" name="blogTitle" value="">${blogVo.blogTitle}</td>
+			      			<td><input id="textTitle" type="text" name="blogTitle" value="${blogVo.blogTitle}"></td>
 			      		</tr>
 			      		<tr>
 			      			<td><label>로고이미지</label></td>
-			      			<td class="text-left"><img src="${pageContext.request.contextPath}/upload/${blogVo.logoFile}"></td>   
+   								<c:choose>
+									<c:when test="${blogVo.logoFile==null}">
+			      						<td class="text-left"><img src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg"></td>
+									</c:when>
+									<c:otherwise>
+			      						<td class="text-left"><img src="${pageContext.request.contextPath}/upload/${blogVo.logoFile}"></td>
+      			   					</c:otherwise>
+								</c:choose>
 			      		</tr>      		
 			      		<tr>
 			      			<td>&nbsp;</td>

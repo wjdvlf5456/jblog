@@ -20,6 +20,10 @@ public class CategoryController {
 	public String showCategory(@PathVariable("id")String id){
 		System.out.println("CategoryController > showCategory");
 		
+		
+		
+		
+		
 		return "blog/admin/blog-admin-cate";
 	};
 

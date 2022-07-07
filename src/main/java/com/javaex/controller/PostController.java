@@ -20,6 +20,8 @@ public class PostController {
 		System.out.println("PostController > writeForm");
 		System.out.println(id);
 		
+		
+		
 		return "blog/admin/blog-admin-write";
 	};
 

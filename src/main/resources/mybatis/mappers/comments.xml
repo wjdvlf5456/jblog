@@ -2,6 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="comments">
+<select id="selectCmtList" resultType="CommentsVo">
+	<![CDATA[
+		select  cmtNo, 
+				postNo, 
+				userNo, 
+				cmtContent, 
+				regDate 
+		from comments
+	]]>
+</select>
+<select id="getCmt" parameterType="int" resultType="CommentsVo">
+	<![CDATA[
+		select  cmtNo, 
+				postNo, 
+				userNo, 
+				cmtContent, 
+				regDate 
+		from comments 
+		where cmtNo = #{cmtNo}
+	]]>
+</select>
+<insert id="cmtInsert" parameterType="CommentsVo">
+	<![CDATA[
+		insert into comments 
+		values(seq_comments_no.nextval, #{postNo}, #{userNo}, #{cmtContent}, sysdate)
 
+	]]>
+</insert>
+<delete id="cmtDelete" parameterType="int">
+	<![CDATA[
+		delete from comments 
+		where cmtNo = #{cmtNo}
+	]]>
+</delete>
 
 </mapper>

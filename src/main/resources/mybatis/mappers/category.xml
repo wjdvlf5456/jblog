@@ -3,5 +3,39 @@
 
 <mapper namespace="category">
 
+<select id="cateSelectList">
+	<![CDATA[
+		select  cateNo,
+			id, 
+			cateName, 
+			description, 
+			regDate  
+		from category
+	]]>
+</select>
+<select id="getCategory" parameterType="int" resultType="CategoryVo">
+	<![CDATA[
+		select  cateNo,
+				id, 
+				cateName, 
+				description, 
+				regDate  
+		from category 
+		where cateNo = #{cateNo}
+	]]>
+</select>
+
+<insert id="cateInsert" parameterType="CategoryVo">
+	<![CDATA[
+		insert into category 
+		values(seq_category_no.nextval, #{id}, #{cateNmae}, #{description}, sysdate)
+	]]>
+</insert>
+<delete id="cateDelete" parameterType="int">
+	<![CDATA[
+		delete from category 
+		where cateNo = #{cateNo}
+	]]>
+</delete>
 
 </mapper>
