@@ -30,8 +30,9 @@ public class CategoryController {
 	};
 	
 	@ResponseBody
-	@RequestMapping(value = "/catetList", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/cateList", method = {RequestMethod.GET,RequestMethod.POST})
 	public List<CategoryVo> cateList(){
+		System.out.println("CategoryController > showCategory");
 		List<CategoryVo> cateList = categoryService.cateList();
 		System.out.println(cateList);
 		
