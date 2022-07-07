@@ -108,17 +108,31 @@ $("#btnIdCheck").on("click", function(){
 	// ajax 
 	
 });
-/*
 $("#btnJoin").on("click",function(){
-	if ("#chkAgree" == false) {
-		alert("약관에 동의해주세요");
-		return false;
-	} else {
-		return true;
-	}
+	
+	var id = $("#txtId").val();
+	
+	var blogVo = {
+		id: id
+	};
+	
+		$.ajax({
+		url : "${pageContext.request.contextPath}/blogInsert",
+		type : "post",
+		contentType : "application/json",
+		data : JSON.stringify(blogVo), //js객체를 JSON문자열로 변환
+
+		dataType : "json",
+		success : function(result) {
+			console.log(result);
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+	// ajax 
 	
 });
-*/
 
 </script>
 </html>

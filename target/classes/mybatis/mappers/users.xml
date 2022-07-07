@@ -19,6 +19,6 @@
 
 	<insert id="usersInsert">
 		insert into users 
-		values(seq_users_no.nextval, #{id}, #{userName},#{password},sysdate)
+		values(seq_users_no.nextval, #{id}, #{userName},#{password},sysdate) 
 	</insert>
 </mapper>

@@ -9,4 +9,19 @@
 		from blog 
 		where id = #{id}
 	</select>
+	
+	<insert id="blogInsert" parameterType="BlogVo">
+		insert into blog
+		values(#{id}, #{blogTitle},#{logoFile})
+	</insert>
+	
+	<update id="blogUpdate" parameterType="BlogVo">
+		<![CDATA[
+			update blog 
+			set blogTitle = #{blogTitle}, 
+				logoFile = #{logoFile} 
+			where id = #{id}
+		]]>
+	</update>
+	
 </mapper>

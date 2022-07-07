@@ -17,5 +17,18 @@ public class BlogDao {
 		
 		return blogDao;
 	};
+	
+	public int blogInsert(BlogVo blogVo) {
+		int count = sqlSession.insert("blog.blogInsert",blogVo);
+		
+		return count;
+	};
+	
+	
+	public int blogUpdate(BlogVo blogVo){
+		int count = sqlSession.selectOne("blog.blogUpdate",blogVo);
+		
+		return count;
+	};
 
 }
