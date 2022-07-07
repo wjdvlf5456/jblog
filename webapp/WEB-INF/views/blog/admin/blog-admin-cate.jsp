@@ -6,8 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>JBlog</title>
+<!-- css -->
+<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
 
+<!-- js -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
 
 </head>
 
@@ -103,7 +108,73 @@
 	<!-- //wrap -->
 </body>
 
+<script type="text/javascript">
+$(document).ready(function() {
+	console.log("jquery로 데이터 받기");
+	fetchList();
+	
+	
+	// 리스트 요청
+	function fetchList() {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/cateList",
+			type : "post",
+			contentType: "application/json",
+			//data : {id: id},
 
+			dataType : "json",
+			success : function(cateList) {
+				/*성공시 처리해야될 코드 작성*/
+				console.log(cateList);
+				//화면에 data + html을 그린다.
+				for (var i = 0; i < cateList.length; i++) {
+					render(cateList[i], "down");
+				}
 
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
 
+		})
+
+	}
+
+	function render(cateVo, opt) {
+		console.log("render()");
+
+		var str = '';
+		str += '<tr>';
+		str += '	<td>'+ cateVo.cateNo +'</td>';
+		str += '	<td>'+ cateVo.cateName +'</td>';
+		str += '	<td>포스팅 수</td>';
+		str += '	<td>'+ cateVo.description +'</td>';
+		str += '    <td class="text-center">';
+		str += '    	<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg">';
+		str += '   </td>';
+		str += '</tr>';
+
+		//리스트 순서
+		if (opt == "up") {
+			$("table").prepend(str);
+
+		} else if (opt == "down") {
+			$("table").append(str);
+
+		} else {
+			console.log("opt오류");
+		}
+
+	};
+/* 	
+	#("img").on("click",".btnCateDel",function(){
+		var $this = $(this).val();
+		console.log($this);
+		
+		
+	}); */
+
+});
+
+</script>
 </html>

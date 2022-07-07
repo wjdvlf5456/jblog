@@ -3,13 +3,13 @@
 
 <mapper namespace="category">
 
-<select id="cateSelectList">
+<select id="cateSelectList" resultType="CategoryVo">
 	<![CDATA[
-		select  cateNo,
-			id, 
-			cateName, 
-			description, 
-			regDate  
+		select  cateNo, 
+				id, 
+				cateName, 
+				description, 
+				regDate  
 		from category
 	]]>
 </select>
