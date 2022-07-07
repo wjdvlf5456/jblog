@@ -38,7 +38,6 @@ public class BlogService {
 	*/
 	
 	public int blogUpdate(String id,String blogTitle,MultipartFile file) {
-		int count = 0;
 		
 		String saveDir = "/Users/choijungphil/javaStudy/upload";
 		
@@ -60,7 +59,7 @@ public class BlogService {
 		BlogVo blogVo = new BlogVo(id,blogTitle,saveName);
 		
 		//(1)다오로 보내서 DB 업데이트
-		blogDao.blogUpdate(blogVo);
+		int count = blogDao.blogUpdate(blogVo);
 		
 		//(2)파일저장
 		try {

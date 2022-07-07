@@ -13,9 +13,9 @@ public class BlogDao {
 	private SqlSession sqlSession;
 	
 	public BlogVo getBlog(String id) {
-		BlogVo blogDao = sqlSession.selectOne("blog.selectBlog",id);
+		BlogVo blogVo = sqlSession.selectOne("blog.selectBlog",id);
 		
-		return blogDao;
+		return blogVo;
 	};
 	
 	public int blogInsert(BlogVo blogVo) {
