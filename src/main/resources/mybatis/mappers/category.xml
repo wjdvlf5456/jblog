@@ -10,14 +10,15 @@
 		<result column="regDate" property="regDate" />
 	</resultMap>
 
-<select id="cateSelectList" resultMap="resultMapCategoryVo">
+<select id="cateSelectList" parameterType="String" resultMap="resultMapCategoryVo">
 	<![CDATA[
 		select  cateNo, 
 				id, 
 				cateName, 
 				description, 
 				to_char(regDate, 'yyyy-mm-dd')regDate 
-		from category
+		from category 
+		where id = #{id}
 	]]>
 </select>
 <select id="getCategory" parameterType="int" resultType="CategoryVo">

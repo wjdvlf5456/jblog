@@ -14,8 +14,8 @@ public class CategoryService {
 	@Autowired
 	private CategoryDao categoryDao;
 	
-	public List<CategoryVo> cateList(){
-		List<CategoryVo> cateList = categoryDao.cateList();
+	public List<CategoryVo> cateList(String id){
+		List<CategoryVo> cateList = categoryDao.cateList(id);
 		System.out.println(cateList);
 		
 		return cateList;

@@ -63,11 +63,11 @@
 					</colgroup>
 					<tr>
 						<td class="t">카테고리명</td>
-						<td><input type="text" name="name" value=""></td>
+						<td><input type="text" name="cateName" value=""></td>
 					</tr>
 					<tr>
 						<td class="t">설명</td>
-						<td><input type="text" name="desc"></td>
+						<td><input type="text" name="description"></td>
 					</tr>
 				</table>
 
@@ -99,12 +99,22 @@
 
 	// 리스트 요청
 	function fetchList() {
+		var id = '${blogVo.id}';
+		console.log(id);
+		
+		// = 없으면 오류
+		var cateVo = {
+			id: id
+		};
+		
+		
+		
 		$.ajax({
 			url : "${pageContext.request.contextPath}/cateList",
 			type : "post",
 			contentType : "application/json",
-			//data : {id: id},
-
+			data : JSON.stringify(cateVo),
+			
 			dataType : "json",
 			success : function(cateList) {
 				/*성공시 처리해야될 코드 작성*/
@@ -120,7 +130,7 @@
 			}
 
 		})
-
+		// ajax 
 	};
 
 	function render(cateVo, opt) {
@@ -150,12 +160,34 @@
 		}
 
 	};
-	/* 	
+	/* 
 	 #("img").on("click",".btnCateDel",function(){
 	 var $this = $(this).val();
 	 console.log($this);
+		$.ajax({
+			url : "${pageContext.request.contextPath}/cateList",
+			type : "post",
+			contentType : "application/json",
+			//data : {id: id},
+
+			dataType : "json",
+			success : function(cateList) {
+				/*성공시 처리해야될 코드 작성
+				console.log(cateList);
+				//화면에 data + html을 그린다.
+				for (var i = 0; i < cateList.length; i++) {
+					render(cateList[i], "down");
+				}
+
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+
+		})
+		// ajax 
 	
-	
-	 }); */
+	 });
+	  */
 </script>
 </html>

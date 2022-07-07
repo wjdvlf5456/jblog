@@ -14,8 +14,8 @@ public class CategoryDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<CategoryVo> cateList(){
-		List<CategoryVo> cList = sqlSession.selectList("category.cateSelectList");
+	public List<CategoryVo> cateList(String id){
+		List<CategoryVo> cList = sqlSession.selectList("category.cateSelectList",id);
 		
 		return cList;
 	};
