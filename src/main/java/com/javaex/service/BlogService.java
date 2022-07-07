@@ -26,6 +26,7 @@ public class BlogService {
 		return blogVo;
 	};
 	
+	/*
 	public int blogInsert(BlogVo blogVo) {
 		blogVo.setLogoFile("");
 		
@@ -34,6 +35,7 @@ public class BlogService {
 		
 		return count;
 	};
+	*/
 	
 	public int blogUpdate(String id,String blogTitle,MultipartFile file) {
 		int count = 0;

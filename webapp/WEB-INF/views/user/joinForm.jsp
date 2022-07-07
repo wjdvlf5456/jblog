@@ -108,6 +108,9 @@ $("#btnIdCheck").on("click", function(){
 	// ajax 
 	
 });
+
+//===============================================================
+/*
 $("#btnJoin").on("click",function(){
 	
 	var id = $("#txtId").val();
@@ -135,6 +138,6 @@ $("#btnJoin").on("click",function(){
 	// ajax 
 	
 });
-
+*/
 </script>
 </html>

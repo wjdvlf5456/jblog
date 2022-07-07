@@ -31,6 +31,7 @@ public class BlogController {
 		return "blog/blog-main";
 	};
 	
+	/*
 	// ========================== 회원가입 시 블로그 생성(ajax) ===========================
 	@ResponseBody
 	@RequestMapping(value = "/blogInsert",method = {RequestMethod.GET,RequestMethod.POST})
@@ -38,7 +39,7 @@ public class BlogController {
 		System.out.println(blogVo);
 		blogService.blogInsert(blogVo);
 	};
-	
+	*/
 	
 	
 	
@@ -62,7 +63,7 @@ public class BlogController {
 		int count = blogService.blogUpdate(id,blogTitle,file);
 		System.out.println(count + "건 변경");
 		
-		return "redirect:./blog-main";
+		return "redirect:./";
 	};
 	
 	
