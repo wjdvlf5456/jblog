@@ -9,7 +9,7 @@
 				id, 
 				cateName, 
 				description, 
-				regDate  
+				to char(regDate, 'yyyy-mm-dd') regDate 
 		from category
 	]]>
 </select>

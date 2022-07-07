@@ -52,7 +52,7 @@ public class UsersController {
 	public String logout(HttpSession session) {
 		System.out.println("UsersController > logout");
 		
-		session.removeAttribute("/logout");
+		session.removeAttribute("authUser");
 		session.invalidate();
 		
 		// 메인페이지로 리다이렉트

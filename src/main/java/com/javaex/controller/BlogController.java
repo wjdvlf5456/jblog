@@ -1,5 +1,7 @@
 package com.javaex.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,12 +23,14 @@ public class BlogController {
 	private BlogService blogService;
 	// =================================== 블로그(메인) ===================================
 	@RequestMapping(value = "/{id}")
-	public String showBlog(@PathVariable("id")String id, Model model) {
+	public String showBlog(@PathVariable("id")String id,HttpSession session) {
 		System.out.println("BlogController > showBlog");
 		BlogVo blogVo = blogService.getBlog(id);
-		System.out.println(blogVo);
+		System.out.println("blogVo로 세션값 지정 후 basic으로 보냄: " + blogVo);
 		
-		model.addAttribute("blogVo",blogVo);
+		if (blogVo!=null) {
+			session.setAttribute("blogVo", blogVo);
+		}
 		
 		return "blog/blog-main";
 	};
@@ -45,12 +49,8 @@ public class BlogController {
 	
 	// =================================== 내 블로그 관리 ===================================
 	@RequestMapping(value = "/{id}/admin/basic")
-	public String adminBlog(@PathVariable("id")String id,Model model) {
+	public String adminBlog(@PathVariable("id")String id) {
 		System.out.println("BlogController > adminBlog");
-		BlogVo blogVo = blogService.getBlog(id);
-		System.out.println(blogVo);
-		
-		model.addAttribute("blogVo",blogVo);
 		
 		return "blog/admin/blog-admin-basic";
 	};
@@ -67,6 +67,17 @@ public class BlogController {
 		return "redirect:./";
 	};
 	
+	// =================================== 블로그 보기 종료  ===================================
+	@RequestMapping(value = "/endAdmin", method = {RequestMethod.GET,RequestMethod.POST})
+	public String endAdmin(HttpSession session) {
+		System.out.println("BlogController > endAdmin");
+		
+		String id = session.getId();
+		System.out.println(id);
+		
+		session.removeAttribute("blogVo");
+		return "redirect:/main";
+	};
 	
 
 }
