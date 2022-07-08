@@ -97,36 +97,35 @@
 
 	});
 	
-	$("#btnSubmit").on("click", function() {
-		console.log("저장버튼 클릭");
+	$("#btnAddCate").on("click", function() {
+		console.log("카테고리 추가 클릭");
 
 		// 데이터 수집
 		var id = '${blogVo.id}';
-		var cateName = $("[name='name']").val();
-		var description = $("[name='password']").val();
+		var cateName = $("[name='cateName']").val();
+		var description = $("[name='description']").val();
 
-		var cateVo = {
+		var categoVo = {
 			id : id, 
 			cateName : cateName, 
 			description : description
 		};
 
-		console.log(cateVo);
+		console.log(categoVo);
 
 		$.ajax({
 			url : "${pageContext.request.contextPath}/addCategory",
 			type : "post",
 			contentType : "application/json",
-			data : JSON.stringify(cateVo), 
+			data : JSON.stringify(categoVo), 
 
 			dataType : "json",
-			success : function(gVo) {
-				render(gVo, "up");
+			success : function(cVo) {
+				render(cVo, "up");
 
 				//입력폼 초기화
-				$("[name='name']").val("");
-				$("[name='password']").val("");
-				$("[name='content']").val("");
+				$("[name='cateName']").val("");
+				$("[name='description']").val("");
 
 			},
 			error : function(XHR, status, error) {

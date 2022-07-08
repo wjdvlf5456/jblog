@@ -19,7 +19,7 @@
 				to_char(regDate, 'yyyy-mm-dd')regDate 
 		from category 
 		where id = #{id} 
-		order by cateNo asc
+		order by cateNo desc
 	]]>
 </select>
 <select id="getCategory" parameterType="int" resultType="CategoryVo">
@@ -37,7 +37,7 @@
 <insert id="cateInsert" parameterType="CategoryVo">
 	<![CDATA[
 		insert into category 
-		values(seq_category_no.nextval, #{id}, #{cateNmae}, #{description}, sysdate)
+		values(seq_category_no.nextval, #{id}, #{cateName}, #{description}, sysdate)
 	]]>
 </insert>
 <delete id="cateDelete" parameterType="int">

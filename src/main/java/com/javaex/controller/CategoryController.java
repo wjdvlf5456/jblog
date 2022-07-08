@@ -49,9 +49,9 @@ public class CategoryController {
 	// ========================== 카테고리 등록 =========================
 	@ResponseBody
 	@RequestMapping(value = "/addCategory", method = {RequestMethod.GET, RequestMethod.POST})
-	public CategoryVo addCategory(@RequestBody CategoryVo cateVo){
-		System.out.println(cateVo);
-		CategoryVo cVo = categoryService.cateInsert(cateVo);
+	public CategoryVo addCategory(@RequestBody CategoryVo categoVo){
+		System.out.println(categoVo);
+		CategoryVo cVo = categoryService.cateInsert(categoVo);
 		
 		return cVo;
 	};
