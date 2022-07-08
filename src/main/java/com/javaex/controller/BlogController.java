@@ -76,7 +76,7 @@ public class BlogController {
 		System.out.println(id);
 		
 		session.removeAttribute("blogVo");
-		return "redirect:/main";
+		return "redirect:/";
 	};
 	
 

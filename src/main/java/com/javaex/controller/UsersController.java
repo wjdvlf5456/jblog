@@ -43,7 +43,7 @@ public class UsersController {
 		} else {	//로그인 성공 시
 			session.setAttribute("authUser", authUser);
 			
-			return "redirect:/main";
+			return "redirect:/";
 		}
 		
 	};
@@ -56,7 +56,7 @@ public class UsersController {
 		session.invalidate();
 		
 		// 메인페이지로 리다이렉트
-		return "redirect:/main";
+		return "redirect:/";
 	}
 	
 	// ======================================================================================

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MainController {
 	
 	// =================================== 사이트 메인 ===================================
-	@RequestMapping(value="/main", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value="/", method = {RequestMethod.GET,RequestMethod.POST})
 	public String main() {
 		System.out.println("MainController > main");
 		
