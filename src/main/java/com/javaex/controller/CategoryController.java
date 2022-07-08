@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.CategoryService;
@@ -31,6 +30,8 @@ public class CategoryController {
 		return "blog/admin/blog-admin-cate";
 	};
 	
+	
+	// ========================== 카테고리리스트(ajax+json)=========================
 	@ResponseBody
 	@RequestMapping(value = "/cateList", method = {RequestMethod.GET,RequestMethod.POST})
 	public List<CategoryVo> cateList(@RequestBody CategoryVo cateVo){
@@ -44,5 +45,18 @@ public class CategoryController {
 		
 		return cateList;
 	};
+	
+	// ========================== 카테고리 등록 =========================
+	@ResponseBody
+	@RequestMapping(value = "/addCategory", method = {RequestMethod.GET, RequestMethod.POST})
+	public CategoryVo addCategory(@RequestBody CategoryVo cateVo){
+		System.out.println(cateVo);
+		CategoryVo cVo = categoryService.cateInsert(cateVo);
+		
+		return cVo;
+	};
+	
+	
+	
 
 }

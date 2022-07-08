@@ -96,6 +96,47 @@
 		fetchList();
 
 	});
+	
+	$("#btnSubmit").on("click", function() {
+		console.log("저장버튼 클릭");
+
+		// 데이터 수집
+		var id = '${blogVo.id}';
+		var cateName = $("[name='name']").val();
+		var description = $("[name='password']").val();
+
+		var cateVo = {
+			id : id, 
+			cateName : cateName, 
+			description : description
+		};
+
+		console.log(cateVo);
+
+		$.ajax({
+			url : "${pageContext.request.contextPath}/addCategory",
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(cateVo), 
+
+			dataType : "json",
+			success : function(gVo) {
+				render(gVo, "up");
+
+				//입력폼 초기화
+				$("[name='name']").val("");
+				$("[name='password']").val("");
+				$("[name='content']").val("");
+
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+
+		});
+		// ajax 
+
+	});
 
 	// 리스트 요청
 	function fetchList() {

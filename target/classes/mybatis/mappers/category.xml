@@ -18,7 +18,8 @@
 				description, 
 				to_char(regDate, 'yyyy-mm-dd')regDate 
 		from category 
-		where id = #{id}
+		where id = #{id} 
+		order by cateNo asc
 	]]>
 </select>
 <select id="getCategory" parameterType="int" resultType="CategoryVo">

@@ -26,8 +26,8 @@ public class CategoryDao {
 		return cVo;
 	};
 	
-	public int cateInsert(CategoryVo cVo) {
-		int count = sqlSession.insert("category.cateInsert",cVo);
+	public int cateInsert(CategoryVo cateVo) {
+		int count = sqlSession.insert("category.cateInsert",cateVo);
 		return count;
 	};
 	

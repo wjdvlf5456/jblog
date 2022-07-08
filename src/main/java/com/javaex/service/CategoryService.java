@@ -20,5 +20,18 @@ public class CategoryService {
 		
 		return cateList;
 	};
+	
+	public CategoryVo cateInsert(CategoryVo cateVo) {
+		int count = categoryDao.cateInsert(cateVo);
+		System.out.println(count + "개의 카테고리 추가");
+		
+		//id값으로 마지막에 있는 cateNo 가져와 return
+		List<CategoryVo> cateList = categoryDao.cateList(cateVo.getId());
+		int cateNo = cateList.get(cateList.size()-1).getCateNo();
+		
+		CategoryVo cVo = categoryDao.getCate(cateNo);
+		
+		return cVo;
+	};
 
 }
