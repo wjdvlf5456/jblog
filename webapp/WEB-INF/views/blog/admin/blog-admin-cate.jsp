@@ -178,7 +178,7 @@
 
 		var str = '';
 		
-		str += '<tr>';
+		str += '<tr id= t'+cateVo.cateNo +'>';
 		str += '	<td>' + cateVo.cateNo + '</td>';
 		str += '	<td>' + cateVo.cateName + '</td>';
 		str += '	<td>포스팅 수</td>';
@@ -200,34 +200,38 @@
 		}
 
 	};
-	/* 
+	
 	 #("img").on("click",".btnCateDel",function(){
 	 var $this = $(this).val();
-	 console.log($this);
+		var deleteVo = {
+
+	 
+		};
+
+	 
 		$.ajax({
-			url : "${pageContext.request.contextPath}/cateList",
+			url : "${pageContext.request.contextPath}/delCategory",
 			type : "post",
 			contentType : "application/json",
-			//data : {id: id},
+			data : JSON.stringify(deleteVo), 
 
 			dataType : "json",
-			success : function(cateList) {
-				/*성공시 처리해야될 코드 작성
-				console.log(cateList);
-				//화면에 data + html을 그린다.
-				for (var i = 0; i < cateList.length; i++) {
-					render(cateList[i], "down");
+			success : function(result) {
+				console.log(result);
+				if (result == "true") {
+					$("#t" + cateNo).remove();
 				}
+
 
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
 
-		})
+		});
 		// ajax 
 	
 	 });
-	  */
+	 
 </script>
 </html>

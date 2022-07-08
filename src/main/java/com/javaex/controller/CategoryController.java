@@ -56,6 +56,19 @@ public class CategoryController {
 		return cVo;
 	};
 	
+	// ========================== 카테고리 삭제 =========================
+	@ResponseBody
+	@RequestMapping(value = "/delCategory", method = {RequestMethod.GET, RequestMethod.POST})
+	public String delCategory(@RequestBody CategoryVo deleteVo){
+		System.out.println(deleteVo);
+		int cateNo = deleteVo.getCateNo();
+		
+		String result = categoryService.cateDelete(cateNo);
+		
+		System.out.println(result);
+		return result;
+	};
+	
 	
 	
 

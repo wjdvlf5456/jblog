@@ -33,5 +33,16 @@ public class CategoryService {
 		
 		return cVo;
 	};
+	
+	
+	public String cateDelete(int cateNo) {
+		int count = categoryDao.cateDelete(cateNo);
+		String result = "true";
+		if (count>0) {
+			result = "fail";
+		}
+		
+		return result;
+	};
 
 }
