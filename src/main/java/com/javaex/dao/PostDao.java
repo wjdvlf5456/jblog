@@ -25,6 +25,13 @@ public class PostDao {
 		return postVo;
 	};
 	
+	public int countPost(int cateNo){
+		int count = sqlSession.selectOne("post.countPost",cateNo);
+		
+		return count;
+	};
+	
+	
 	public int postInsert(PostVo postVo) {
 		int count = sqlSession.insert("post.postInsert",postVo);
 		return count;

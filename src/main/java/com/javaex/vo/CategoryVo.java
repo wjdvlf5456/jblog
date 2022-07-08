@@ -9,6 +9,7 @@ public class CategoryVo {
 	private String cateName;
 	private String description;
 	private String regDate;
+	private int countPost;
 	
 	//생성자
 	public CategoryVo() {
@@ -25,14 +26,15 @@ public class CategoryVo {
 		this.cateName = cateName;
 		this.description = description;
 	}
-	
-	public CategoryVo(int rownum, int cateNo, String id, String cateName, String description, String regDate) {
+
+	public CategoryVo(int rownum, int cateNo, String id, String cateName, String description, String regDate,int countPost) {
 		this.rownum = rownum;
 		this.cateNo = cateNo;
 		this.id = id;
 		this.cateName = cateName;
 		this.description = description;
 		this.regDate = regDate;
+		this.countPost = countPost;
 	}
 
 
@@ -96,12 +98,21 @@ public class CategoryVo {
 		this.regDate = regDate;
 	}
 
+
+	public int getCountPost() {
+		return countPost;
+	}
+
+
+	public void setCountPost(int countPost) {
+		this.countPost = countPost;
+	}
+	
 	//메소드 - 일반
 	@Override
 	public String toString() {
 		return "CategoryVo [rownum=" + rownum + ", cateNo=" + cateNo + ", id=" + id + ", cateName=" + cateName
-				+ ", description=" + description + ", regDate=" + regDate + "]";
+				+ ", description=" + description + ", regDate=" + regDate + ", countPost=" + countPost + "]";
 	}
-	
 
 }

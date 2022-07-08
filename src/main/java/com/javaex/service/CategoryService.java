@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.dao.CategoryDao;
+import com.javaex.dao.PostDao;
 import com.javaex.vo.CategoryVo;
 
 @Service
@@ -13,10 +14,21 @@ public class CategoryService {
 	
 	@Autowired
 	private CategoryDao categoryDao;
+	@Autowired
+	private PostDao postDao;
 	
 	public List<CategoryVo> cateList(String id){
 		List<CategoryVo> cateList = categoryDao.cateList(id);
 		System.out.println(cateList);
+		//처음 카테고리 생성시 로우넘 0에서 1로 교체
+		if (cateList.get(0).getRownum()==0) {
+			cateList.get(0).setRownum(1);
+		}
+		
+		//각 카테고리마다 포스트 수 세어오기
+		for (int i = 0; i < cateList.size(); i++) {
+			cateList.get(i).setCountPost(postDao.countPost(cateList.get(i).getCateNo()));
+		}
 		
 		return cateList;
 	};

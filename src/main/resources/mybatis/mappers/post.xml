@@ -23,6 +23,17 @@
 			where postNo = #{postNo}
 		]]>
 	</select>
+	<select id="countPost" parameterType="int" resultType="int">
+		<![CDATA[
+			select count(cateNo) count 
+			from post 
+			where cateNo = #{cateNo}
+		]]>
+	</select>
+	
+	
+	
+	
 	<insert id="postInsert" parameterType="PostVo">
 		<![CDATA[
 			insert into post 

@@ -40,7 +40,9 @@ public class CategoryController {
 		
 		
 		System.out.println("id: " + id);
+		
 		List<CategoryVo> cateList = categoryService.cateList(id);
+		
 		System.out.println(cateList);
 		
 		return cateList;

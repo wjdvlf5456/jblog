@@ -97,6 +97,8 @@
 
 	});
 	
+	
+	//====================================== 새 카테고리 추가 ======================================
 	$("#btnAddCate").on("click", function() {
 		console.log("카테고리 추가 클릭");
 
@@ -137,7 +139,7 @@
 
 	});
 
-	// 리스트 요청
+	//====================================== 카테고리 목록 ======================================
 	function fetchList() {
 		var id = '${blogVo.id}';
 		console.log(id);
@@ -146,8 +148,6 @@
 		var cateVo = {
 			id: id
 		};
-		
-		
 		
 		$.ajax({
 			url : "${pageContext.request.contextPath}/cateList",
@@ -181,7 +181,7 @@
 		str += '<tr id= "t'+cateVo.cateNo +'">';
 		str += '	<td>' + cateVo.rownum + '</td>';
 		str += '	<td>' + cateVo.cateName + '</td>';
-		str += '	<td>포스팅 수</td>';
+		str += '	<td>'+ cateVo.countPost +'</td>';
 		str += '	<td>' + cateVo.description + '</td>';
 		str += '    <td class="text-center">';
 		str += '    	<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg" data-no='+cateVo.cateNo+'>';
@@ -200,6 +200,8 @@
 		}
 
 	};
+	
+	//====================================== 선택한 카테고리 삭제 ======================================
 	 $("table").on("click",".btnCateDel",function(){
 	 var $this = $(this);
 	 var cateNo = $this.data("no");
@@ -221,7 +223,6 @@
 				if (result == "true") {
 					$("#t" + cateNo).remove();
 				}
-
 
 			},
 			error : function(XHR, status, error) {
