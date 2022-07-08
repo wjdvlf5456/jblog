@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.dao.BlogDao;
+import com.javaex.dao.CategoryDao;
 import com.javaex.dao.UsersDao;
 import com.javaex.vo.BlogVo;
+import com.javaex.vo.CategoryVo;
 import com.javaex.vo.UsersVo;
 
 @Service
@@ -15,10 +17,12 @@ public class UsersService {
 	private UsersDao usersDao;
 	@Autowired
 	private BlogDao blogDao;
+	@Autowired
+	private CategoryDao cateDao;
 	
 	//로그인용 사용자번호와 이름 가져오기
 	public UsersVo getUser(UsersVo usersVo) {
-		UsersVo uVo = usersDao.selectUsersInfo(usersVo);
+		UsersVo uVo = usersDao.userLogin(usersVo);
 		return uVo;
 	}
 	
@@ -36,6 +40,7 @@ public class UsersService {
 	public int usersInsert(UsersVo usersVo) {
 		
 		BlogVo blogVo = new BlogVo();
+		CategoryVo cVo = new CategoryVo();
 		
 		if (check(usersVo)==false) {
 			//중복된 아이디가 있을 시
@@ -50,6 +55,12 @@ public class UsersService {
 			blogVo.setLogoFile("");
 			
 			blogDao.blogInsert(blogVo);
+			
+			cVo.setId(usersVo.getId());
+			cVo.setCateName("미분류");
+			cVo.setDescription("기타내용 작성 요");
+			
+			cateDao.cateInsert(cVo);
 
 			return count;
 		}

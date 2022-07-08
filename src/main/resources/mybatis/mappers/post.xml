@@ -2,14 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="post">
-	<select id="selectPostList" resultType="PostVo">
+	<select id="selectPostList" parameterType="int" resultType="PostVo">
 		<![CDATA[
 			select  postNo, 
 					cateNo, 
 					postTitle, 
 					postContent, 
 					regDate 
-			from post
+			from post 
+			where cateNo = #{cateNo}
 		]]>
 	</select>
 	<select id="getPost" parameterType="int" resultType="PostVo">

@@ -14,8 +14,8 @@ public class PostDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<PostVo> postList(){
-		List<PostVo> pList = sqlSession.selectList("post.selectPostList");
+	public List<PostVo> postList(int cateNo){
+		List<PostVo> pList = sqlSession.selectList("post.selectPostList",cateNo);
 		
 		return pList;
 	};

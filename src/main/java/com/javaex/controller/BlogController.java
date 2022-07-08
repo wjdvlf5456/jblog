@@ -1,16 +1,16 @@
 package com.javaex.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.BlogService;
@@ -23,14 +23,21 @@ public class BlogController {
 	private BlogService blogService;
 	// =================================== 블로그(메인) ===================================
 	@RequestMapping(value = "/{id}")
-	public String showBlog(@PathVariable("id")String id,HttpSession session) {
+	public String showBlog(@PathVariable("id")String id,HttpSession session,Model model) {
 		System.out.println("BlogController > showBlog");
-		BlogVo blogVo = blogService.getBlog(id);
+		Map<String, Object> bMap= blogService.getBlog(id);
+		System.out.println("pMap: " + bMap.toString());
+		
+		BlogVo blogVo = (BlogVo)bMap.get("blogVo");
+		
 		System.out.println("blogVo로 세션값 지정 후 basic으로 보냄: " + blogVo);
 		
 		if (blogVo!=null) {
 			session.setAttribute("blogVo", blogVo);
 		}
+		
+		bMap.remove("blogVo");
+		model.addAttribute("bMap", bMap);
 		
 		return "blog/blog-main";
 	};

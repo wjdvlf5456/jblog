@@ -12,8 +12,13 @@ public class UsersDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public UsersVo selectUsersInfo(UsersVo usersVo) {
-		UsersVo uVo = sqlSession.selectOne("users.selectUsersInfo",usersVo);
+	public UsersVo userLogin(UsersVo usersVo) {
+		UsersVo uVo = sqlSession.selectOne("users.userLogin",usersVo);
+		
+		return uVo;
+	};
+	public UsersVo selectUsersInfo(String id) {
+		UsersVo uVo = sqlSession.selectOne("users.selectUsersInfo",id);
 		
 		return uVo;
 	};

@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,32 +15,47 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.dao.BlogDao;
+import com.javaex.dao.CategoryDao;
+import com.javaex.dao.PostDao;
+import com.javaex.dao.UsersDao;
 import com.javaex.vo.BlogVo;
 import com.javaex.vo.CategoryVo;
+import com.javaex.vo.PostVo;
+import com.javaex.vo.UsersVo;
 
 @Service
 public class BlogService {
 	
+	
+	@Autowired
+	private UsersDao usersDao;
+	
 	@Autowired
 	private BlogDao blogDao;
 	
-	// ===================== 해당 id 블로그 접속 시 정보 호출 =====================
-	public BlogVo getBlog(String id) {
-		BlogVo blogVo = blogDao.getBlog(id);
-		
-		return blogVo;
-	};
+	@Autowired
+	private CategoryDao cateDao;
 	
-	/*
-	public int blogInsert(BlogVo blogVo) {
-		blogVo.setLogoFile("");
+	@Autowired
+	private PostDao postDao;
+	
+	// ===================== 해당 id 블로그 접속 시 정보 호출 =====================
+	public Map<String,Object> getBlog(String id) {
+		BlogVo blogVo = blogDao.getBlog(id);
+		UsersVo uVo = usersDao.selectUsersInfo(id);
+		List<CategoryVo> cList = cateDao.cateList(id);
 		
-		int count = blogDao.blogInsert(blogVo);
+		List<PostVo> pList= postDao.postList(cList.get(cList.size()-1).getCateNo());
 		
+		//블로그 메인에 넣어줄 정보들 맵으로 넣기
+		Map<String,Object> pMap = new HashMap<String,Object>();
+		pMap.put("blogVo", blogVo);
+		pMap.put("userName", uVo.getUserName());
+		pMap.put("cList", cList);
+		pMap.put("pList",pList);
 		
-		return count;
+		return pMap;
 	};
-	*/
 	
 	// ===================== 관리자일 때 블로그 수정 =====================
 	public int blogUpdate(String id,String blogTitle,MultipartFile file) {
