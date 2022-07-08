@@ -3,6 +3,7 @@
 
 <mapper namespace="category">
 	<resultMap id="resultMapCategoryVo" type="CategoryVo">
+		<result column="rn" property="rownum" />
 		<result column="cateNo" property="cateNo" />
 		<result column="id" property="id" />
 		<result column="cateName" property="cateName" />
@@ -12,14 +13,27 @@
 
 <select id="cateSelectList" parameterType="String" resultMap="resultMapCategoryVo">
 	<![CDATA[
-		select  cateNo, 
+		select  rn, 
+				cateNo, 
 				id, 
 				cateName, 
 				description, 
-				to_char(regDate, 'yyyy-mm-dd')regDate 
-		from category 
-		where id = #{id} 
-		order by cateNo desc
+				regDate  
+		from (select rownum rn, 
+					 cateNo, 
+					 id, 
+					 cateName, 
+					 description, 
+	 				 regDate 
+	 				 from(select cateNo,
+	 				 			 id, 
+	 				 			 cateName, 
+	 				 			 description, 
+	 				 			 to_char(regDate, 'yyyy-mm-dd')regDate 
+			 			  from category 
+			 			  where id = #{id} 
+			 			  order by cateNo asc )
+	 				 )
 	]]>
 </select>
 <select id="getCategory" parameterType="int" resultType="CategoryVo">

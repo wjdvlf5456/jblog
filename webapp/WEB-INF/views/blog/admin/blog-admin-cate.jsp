@@ -179,7 +179,7 @@
 		var str = '';
 		
 		str += '<tr id= "t'+cateVo.cateNo +'">';
-		str += '	<td>' + cateVo.cateNo + '</td>';
+		str += '	<td>' + cateVo.rownum + '</td>';
 		str += '	<td>' + cateVo.cateName + '</td>';
 		str += '	<td>포스팅 수</td>';
 		str += '	<td>' + cateVo.description + '</td>';
