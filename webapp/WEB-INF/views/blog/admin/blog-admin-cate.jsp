@@ -178,13 +178,13 @@
 
 		var str = '';
 		
-		str += '<tr id= t'+cateVo.cateNo +'>';
+		str += '<tr id= "t'+cateVo.cateNo +'">';
 		str += '	<td>' + cateVo.cateNo + '</td>';
 		str += '	<td>' + cateVo.cateName + '</td>';
 		str += '	<td>포스팅 수</td>';
 		str += '	<td>' + cateVo.description + '</td>';
 		str += '    <td class="text-center">';
-		str += '    	<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg">';
+		str += '    	<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg" data-no='+cateVo.cateNo+'>';
 		str += '   </td>';
 		str += '</tr>';
 
@@ -200,12 +200,12 @@
 		}
 
 	};
-	
-	 #("img").on("click",".btnCateDel",function(){
-	 var $this = $(this).val();
-		var deleteVo = {
-
+	 $("table").on("click",".btnCateDel",function(){
+	 var $this = $(this);
+	 var cateNo = $this.data("no");
 	 
+		var deleteVo = {
+				cateNo: cateNo
 		};
 
 	 
@@ -232,6 +232,5 @@
 		// ajax 
 	
 	 });
-	 
 </script>
 </html>

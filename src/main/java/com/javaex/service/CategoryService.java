@@ -37,9 +37,9 @@ public class CategoryService {
 	
 	public String cateDelete(int cateNo) {
 		int count = categoryDao.cateDelete(cateNo);
-		String result = "true";
+		String result = "fail";
 		if (count>0) {
-			result = "fail";
+			result = "true";
 		}
 		
 		return result;
