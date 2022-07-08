@@ -17,6 +17,8 @@ public class CategoryService {
 	@Autowired
 	private PostDao postDao;
 	
+	
+	// ===================== 관리자 카테고리 리스트 불러오기 =====================
 	public List<CategoryVo> cateList(String id){
 		List<CategoryVo> cateList = categoryDao.cateList(id);
 		System.out.println(cateList);
@@ -33,6 +35,7 @@ public class CategoryService {
 		return cateList;
 	};
 	
+	// ===================== 관리자 새 카테고리 등록 =====================
 	public CategoryVo cateInsert(CategoryVo cateVo) {
 		int count = categoryDao.cateInsert(cateVo);
 		System.out.println(count + "개의 카테고리 추가");
@@ -46,7 +49,7 @@ public class CategoryService {
 		return cVo;
 	};
 	
-	
+	// ===================== 관리자 카테고리 삭제 =====================
 	public String cateDelete(int cateNo) {
 		int count = categoryDao.cateDelete(cateNo);
 		String result = "fail";

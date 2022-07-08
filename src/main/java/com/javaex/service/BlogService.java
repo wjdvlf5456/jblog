@@ -21,6 +21,7 @@ public class BlogService {
 	@Autowired
 	private BlogDao blogDao;
 	
+	// ===================== 해당 id 블로그 접속 시 정보 호출 =====================
 	public BlogVo getBlog(String id) {
 		BlogVo blogVo = blogDao.getBlog(id);
 		
@@ -38,6 +39,7 @@ public class BlogService {
 	};
 	*/
 	
+	// ===================== 관리자일 때 블로그 수정 =====================
 	public int blogUpdate(String id,String blogTitle,MultipartFile file) {
 		
 		String saveDir = "/Users/choijungphil/javaStudy/upload";
@@ -70,6 +72,7 @@ public class BlogService {
 		
 		System.out.println(bVo.getLogoFile());
 		File deleteFile = new File(prevFile);
+		
 		//(1)다오로 보내서 DB 업데이트
 		int count = blogDao.blogUpdate(blogVo);
 
