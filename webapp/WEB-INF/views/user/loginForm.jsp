@@ -9,6 +9,10 @@
 <title>JBlog</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
 
+<!-- js -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
+
 </head>
 <body>
 	<div id="center-content">
@@ -55,7 +59,11 @@
 	
 </body>
 <script type="text/javascript">
-
+$(".btn").on("click", function(){
+	var password = $('[name=password]').val();
+	console.log(password);
+	
+});
 
 </script>
 </html>

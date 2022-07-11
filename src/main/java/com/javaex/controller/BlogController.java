@@ -38,6 +38,7 @@ public class BlogController {
 		}
 		
 		bMap.remove("blogVo");
+		//최근 포스트글 꺼내기
 		PostVo pVo = (PostVo)bMap.get("pVo");
 		
 		model.addAttribute("pVo", pVo);
