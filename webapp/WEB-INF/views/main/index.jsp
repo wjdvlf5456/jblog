@@ -32,7 +32,7 @@
 		</form>
 
 		<div id="resultList">
-			<table border="1">
+			<table border="1" id="resultTable">
 				<colgroup>
 					<col style="width: 20%;">
 				</colgroup>
@@ -41,13 +41,15 @@
 					<tr>
 						<c:choose>
 							<c:when test="${usersVo.logoFile!=null}">
-								<td>
-									<img id="proImg" src="${pageContext.request.contextPath}/upload/${usersVo.logoFile}">
+								<td height="40">
+										<img id="proImg" src="${pageContext.request.contextPath}/upload/${usersVo.logoFile}">
 								</td>
 							</c:when>
 							<c:otherwise>
-								<td>
-									<img id="proImg" src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg">
+								<td height="40">
+									<div style = "height:100%">
+										<img id="proImg" src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg">
+									</div>
 								</td>
 							</c:otherwise>
 						</c:choose>
