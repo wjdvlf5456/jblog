@@ -42,7 +42,10 @@ public class UsersService {
 		BlogVo blogVo = new BlogVo();
 		CategoryVo cVo = new CategoryVo();
 		
-		if (check(usersVo)==false) {
+		String id = usersVo.getId();
+		System.out.println(id);
+		
+		if (check(usersVo)==false || id.equals("")) {
 			//중복된 아이디가 있을 시
 			System.out.println("블로그 생성 실패");
 			return 0;

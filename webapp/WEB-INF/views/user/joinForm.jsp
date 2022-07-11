@@ -54,8 +54,9 @@
 							<span>약관동의</span>
 						</td>
 						<td colspan="3">
-						<input id="chkAgree" type="checkbox" name="agree" value="y"> 
-						<label for="chkAgree">서비스 약관에 동의합니다.</label></td>
+							<input id="chkAgree" type="checkbox" name="agree"> 
+							<label for="chkAgree">서비스 약관에 동의합니다.</label>
+						</td>
 					</tr>
 				</table>
 				<div id="btnArea">
@@ -74,75 +75,83 @@
 
 </body>
 <script type="text/javascript">
-	//아이디 중복체크
-	$("#btnIdCheck").on(
-			"click",
-			function() {
-				console.log("아이디 중복체크")
+//아이디 중복체크
+$("#btnIdCheck").on("click", function() {
+	console.log("아이디 중복체크")
 
-				var id = $("#txtId").val();
+	var id = $("#txtId").val();
 
-				var usersVo = {
-					id : id
-				};
+	var usersVo = {
+		id : id
+	};
 
-				$.ajax({
-					url : "${pageContext.request.contextPath}/user/check",
-					type : "post",
-					contentType : "application/json",
-					data : JSON.stringify(usersVo), //js객체를 JSON문자열로 변환
+	$.ajax({
+		url : "${pageContext.request.contextPath}/user/check",
+		type : "post",
+		contentType : "application/json",
+		data : JSON.stringify(usersVo), //js객체를 JSON문자열로 변환
 
-					dataType : "json",
-					success : function(result) {
-						if (result == true) {
-							$("#tdMsg").text("사용할 수 있는 아이디 입니다.").css("color",
-									"black");
+		dataType : "json",
+		success : function(result) {
+			if (result == true) {
+				$("#tdMsg").text("사용할 수 있는 아이디 입니다.").css("color","blue");
+				
+			} else {
+				$("[name='id']").val("");
+				$("#tdMsg").text("다른 아이디로 가입해 주세요").css("color","red");
+			}
 
-						} else {
-							$("[name='id']").val("");
-							$("#tdMsg").text("다른 아이디로 가입해 주세요").css("color",
-									"red");
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+	// ajax 
 
-						}
-
-					},
-					error : function(XHR, status, error) {
-						console.error(status + " : " + error);
-					}
-				});
-				// ajax 
-
-			});
-
-	//===============================================================
-	/*
-	 $("#btnJoin").on("click",function(){
+});
+		
+//====================== 회원가입 시 약관동의 미 체크시 경고창 ======================
+$("#btnJoin").on("click",function(){
+	//입력값들 가져오기
+	var id = $("#txtId").val();
+	var check = $("#btnIdCheck").val();
+	var password = $("#txtPassword").val();
+	var userName = $("#txtUserName").val();
+	var agree = $("#chkAgree:checked").length;
 	
-	 var id = $("#txtId").val();
-	 var userName = $("#txtUserName").val() + '님의 블로그입니다.';
+	//콘솔창에서 확인
+	console.log(id);
+	console.log(check);
+	console.log(password);
+	console.log(userName);
+	console.log(agree);
 	
-	 var blogVo = {
-	 id: id, 
-	 blogTitle: userName
-	 };
+	if (id=="" || id == null) {
+		alert("아이디를 입력해주세요");
+		return false;
+		
+	} else if(check=="" || check==null){
+		alert("아이디 중복체크를 해주세요");
+		return false;
+		
+	} else if(password=="" || password==null){
+		alert("패스워드를 입력해주세요");
+		return false;
+		
+	} else if(userName=="" || userName==null){
+		alert("이름을 입력해주세요");
+		return false;
+		
+	} else if(agree<1){
+		alert("약관에 동의해주세요");
+		return false;
+	}
 	
-	 $.ajax({
-	 url : "${pageContext.request.contextPath}/blogInsert",
-	 type : "post",
-	 contentType : "application/json",
-	 data : JSON.stringify(blogVo), //js객체를 JSON문자열로 변환
+	
+	
+	
+});
 
-	 dataType : "json",
-	 success : function(result) {
-	 console.log(result);
-	 },
-	 error : function(XHR, status, error) {
-	 console.error(status + " : " + error);
-	 }
-	 });
-	 // ajax 
-	
-	 });
-	 */
+
 </script>
 </html>
