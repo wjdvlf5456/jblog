@@ -20,8 +20,8 @@ public class PostDao {
 		return pList;
 	};
 	
-	public PostVo getPost(int postNo) {
-		PostVo postVo = sqlSession.selectOne("post.getpost",postNo);
+	public PostVo getPost(int cateNo) {
+		PostVo postVo = sqlSession.selectOne("post.getpost",cateNo);
 		return postVo;
 	};
 	

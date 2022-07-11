@@ -8,7 +8,7 @@
 					cateNo, 
 					postTitle, 
 					postContent, 
-					regDate
+					to_char(regDate,'yy-mm-dd hh:mm')regDate  
 			from post 
 			where cateNo = #{cateNo} 
 			order by cateNo asc
@@ -16,13 +16,22 @@
 	</select>
 	<select id="getPost" parameterType="int" resultType="PostVo">
 		<![CDATA[
-			select  postNo, 
+			select  rownum rn, 
+					postNo, 
 					cateNo, 
 					postTitle, 
 					postContent, 
-					regDate 
+					to_char(regDate,'yy-mm-dd hh:mm')regDate 
 			from post 
-			where postNo = #{postNo}
+			where rownum = 1 
+		]]>
+			<if test="cateNo!=null">
+		<![CDATA[
+			and cateNo = #{cateNo} 
+		]]>
+			</if>
+		<![CDATA[
+			order by rn asc 
 		]]>
 	</select>
 	<select id="countPost" parameterType="int" resultType="int">

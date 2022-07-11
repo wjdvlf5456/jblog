@@ -32,7 +32,7 @@
 						</c:otherwise>
 					</c:choose>
 
-					<div id="nick">${bMap.userName}</div>
+					<div id="nick">${bMap.userName}(${blogVo.id})님</div>
 				</div>
 				<div id="cate">
 					<div class="text-left">
@@ -60,7 +60,7 @@
 							<div id="postDate" class="text-left">
 								<strong>${pVo.regDate}</strong>
 							</div>
-							<div id="postNick">${bMap.userName}</div>
+							<div id="postNick">${bMap.userName}(${blogVo.id})님</div>
 						</div>
 						<!-- //postBox -->
 
