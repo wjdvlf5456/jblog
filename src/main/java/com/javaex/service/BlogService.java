@@ -75,7 +75,7 @@ public class BlogService {
 		String saveName = "";
 		int count = 0;
 
-		if (file.getOriginalFilename().equals("")) {
+		if (file.getOriginalFilename().equals("")) {	//블로그 타이틀만 바꿀 경우 방지
 			System.out.println("파일 미업로드시");
 			saveName =null;
 			BlogVo blogVo = new BlogVo(id, blogTitle, saveName);
@@ -83,7 +83,7 @@ public class BlogService {
 			// (1)다오로 보내서 DB 업데이트
 			count = blogDao.blogUpdate(blogVo);
 
-		} else {
+		} else {	// 파일업로드 할 때 작용
 			// 오리지널 파일명
 			orgName = file.getOriginalFilename();
 			System.out.println("orgName: " + orgName);
