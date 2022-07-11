@@ -11,7 +11,7 @@
 					regDate
 			from post 
 			where cateNo = #{cateNo} 
-			order by cateNo desc
+			order by cateNo asc
 		]]>
 	</select>
 	<select id="getPost" parameterType="int" resultType="PostVo">

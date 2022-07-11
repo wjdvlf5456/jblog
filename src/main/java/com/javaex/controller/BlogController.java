@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.BlogService;
 import com.javaex.vo.BlogVo;
+import com.javaex.vo.PostVo;
 
 @Controller
 public class BlogController {
@@ -37,6 +38,9 @@ public class BlogController {
 		}
 		
 		bMap.remove("blogVo");
+		PostVo pVo = (PostVo)bMap.get("pVo");
+		
+		model.addAttribute("pVo", pVo);
 		model.addAttribute("bMap", bMap);
 		
 		return "blog/blog-main";

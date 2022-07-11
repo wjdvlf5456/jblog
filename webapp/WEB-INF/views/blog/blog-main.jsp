@@ -48,29 +48,34 @@
 			<!-- profilecate_area -->
 			
 			<div id="post_area">
-				<c:forEach items="${bMap.pList}" var="postVo">
-				<div id="postBox" class="clearfix">
-						<div id="postTitle" class="text-left"><strong>${postVo.postTitle}</strong></div>
-						<div id="postDate" class="text-left"><strong>${postVo.regDate}</strong></div>
-						<div id="postNick">${bMap.userName}</div>
-				</div>
-				<!-- //postBox -->
 			
-				<div id="post">
-				${postVo.postContent}
-				</div>
-				</c:forEach>
-				<!-- //post -->
+			<c:choose>
+				<c:when test="${pVo.postTitle!=null}">
+					<div id="postBox" class="clearfix">
+							<div id="postTitle" class="text-left"><strong>${pVo.postTitle}</strong></div>
+							<div id="postDate" class="text-left"><strong>${pVo.regDate}</strong></div>
+							<div id="postNick">${bMap.userName}</div>
+					</div>
+					<!-- //postBox -->
 				
-				<!-- 글이 없는 경우 -->
-				<div id="postBox" class="clearfix">
-							<div id="postTitle" class="text-left"><strong>등록된 글이 없습니다.</strong></div>
-							<div id="postDate" class="text-left"><strong></strong></div>
-							<div id="postNick"></div>
-				</div>
-			    
-				<div id="post" >
-				</div>
+					<div id="post">
+					${pVo.postContent}
+					</div>
+					<!-- //post -->
+					</c:when>
+				<c:otherwise>
+					
+					<!-- 글이 없는 경우 -->
+					<div id="postBox" class="clearfix">
+								<div id="postTitle" class="text-left"><strong>등록된 글이 없습니다.</strong></div>
+								<div id="postDate" class="text-left"><strong></strong></div>
+								<div id="postNick"></div>
+					</div>
+				    
+					<div id="post" >
+					</div>
+				</c:otherwise>
+			</c:choose>
 				
 				
 				<div id="list">
@@ -80,10 +85,10 @@
 							<col style="">
 							<col style="width: 20%;">
 						</colgroup>
-						<c:forEach items="${bMap.cList}" var="cateVo">
+						<c:forEach items="${bMap.pList}" var="postVo">
 						<tr>
-							<td class="text-left"><a href="">${cateVo.cateName}</a></td>
-							<td class="text-right">${cateVo.regDate }</td>
+							<td class="text-left"><a href="">${postVo.postTitle}</a></td>
+							<td class="text-right">${postVo.regDate}</td>
 						</tr>
 						</c:forEach>
 						
