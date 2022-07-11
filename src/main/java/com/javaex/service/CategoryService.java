@@ -43,12 +43,12 @@ public class CategoryService {
 		//id값으로 마지막에 있는 cateNo 가져와 return
 		List<CategoryVo> cateList = categoryDao.cateList(cateVo.getId());
 		int cateNo = cateList.get(0).getCateNo();
-		int rowNum = cateList.get(0).getRownum();
-		
 		cateVo.setCateNo(cateNo);
 		
-		CategoryVo cVo = categoryDao.getCate(cateVo);
+		CategoryVo cVo = categoryDao.getCate(cateNo);
+		
 		//ajax로 화면에 띄울 때 다음 로우넘을 넣어준다.
+		int rowNum = cateList.get(0).getRownum();
 		cVo.setRownum(rowNum);
 		
 		return cVo;
