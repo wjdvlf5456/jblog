@@ -37,16 +37,33 @@
 	 	order by rn desc			 
 	]]>
 </select>
-<select id="getCategory" parameterType="int" resultType="CategoryVo">
+<select id="getCategory" parameterType="CategoryVo" resultType="CategoryVo">
 	<![CDATA[
-		select  cateNo,
+		select  rn, 
+				cateNo, 
 				id, 
 				cateName, 
 				description, 
 				regDate  
-		from category 
-		where cateNo = #{cateNo}
-	]]>
+		from (select rownum rn, 
+					 cateNo, 
+					 id, 
+					 cateName, 
+					 description, 
+	 				 regDate 
+	 				 from(select cateNo,
+	 				 			 id, 
+	 				 			 cateName, 
+	 				 			 description, 
+	 				 			 to_char(regDate, 'yyyy-mm-dd')regDate 
+			 			  from category
+			 			  where id = #{id} 
+			 			  and cateNo = #{cateNo} 
+			 			  order by cateNo asc ) 
+	 				 ) 
+	 	where rn <= 1 
+	 	order by rn asc 
+ 		]]>
 </select>
 
 <insert id="cateInsert" parameterType="CategoryVo">

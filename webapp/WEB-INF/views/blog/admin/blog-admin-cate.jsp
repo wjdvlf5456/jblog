@@ -124,6 +124,7 @@
 			dataType : "json",
 			success : function(cVo) {
 				render(cVo, "up");
+				console.log(cVo);
 
 				//입력폼 초기화
 				$("[name='cateName']").val("");
@@ -183,9 +184,16 @@
 		str += '	<td>' + cateVo.cateName + '</td>';
 		str += '	<td>'+ cateVo.countPost +'</td>';
 		str += '	<td>' + cateVo.description + '</td>';
+		if (cateVo.cateNo==1) {
+		str += '    <td class="text-center">';
+		str += '    	<img class="" src="">';
+		str += '   </td>';
+			
+		} else {
 		str += '    <td class="text-center">';
 		str += '    	<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg" data-no='+cateVo.cateNo+'>';
 		str += '   </td>';
+		}
 		str += '</tr>';
 
 		//리스트 순서

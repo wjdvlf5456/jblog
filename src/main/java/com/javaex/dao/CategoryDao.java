@@ -20,8 +20,8 @@ public class CategoryDao {
 		return cList;
 	};
 	
-	public CategoryVo getCate(int cateNo) {
-		CategoryVo cVo = sqlSession.selectOne("category.getCategory",cateNo);
+	public CategoryVo getCate(CategoryVo cateVo) {
+		CategoryVo cVo = sqlSession.selectOne("category.getCategory",cateVo);
 		
 		return cVo;
 	};

@@ -64,8 +64,12 @@ public class CategoryController {
 	@ResponseBody
 	@RequestMapping(value = "/addCategory", method = {RequestMethod.GET, RequestMethod.POST})
 	public CategoryVo addCategory(@RequestBody CategoryVo categoVo){
-		System.out.println(categoVo);
+		System.out.println("CategoryController > addCategory");
+		System.out.println("카테고리 추가 데이터: " + categoVo);
+		
 		CategoryVo cVo = categoryService.cateInsert(categoVo);
+		
+		System.out.println("ajax로 돌려주는 값: " + cVo);
 		
 		return cVo;
 	};
@@ -74,7 +78,8 @@ public class CategoryController {
 	@ResponseBody
 	@RequestMapping(value = "/delCategory", method = {RequestMethod.GET, RequestMethod.POST})
 	public String delCategory(@RequestBody CategoryVo deleteVo){
-		System.out.println(deleteVo);
+		System.out.println("CategoryController > delCategory");
+		System.out.println("deleteVo: " + deleteVo);
 		int cateNo = deleteVo.getCateNo();
 		
 		String result = categoryService.cateDelete(cateNo);
