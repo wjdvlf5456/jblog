@@ -39,9 +39,11 @@
 						<strong>카테고리</strong>
 					</div>
 					<ul id="cateList" class="text-left">
-					<c:forEach items="${bMap.cList}" var="cVo">
-						<li><a href="">${cVo.cateName}</a></li>
-					</c:forEach>
+					<c:if test="${bMap.cList!=null}">
+						<c:forEach items="${bMap.cList}" var="cVo">
+							<li><a href="">${cVo.cateName}</a></li>
+						</c:forEach>
+					</c:if>
 					</ul>
 				</div>
 			</div>
@@ -85,14 +87,14 @@
 							<col style="">
 							<col style="width: 20%;">
 						</colgroup>
-						<c:forEach items="${bMap.pList}" var="postVo">
-						<tr>
-							<td class="text-left"><a href="">${postVo.postTitle}</a></td>
-							<td class="text-right">${postVo.regDate}</td>
-						</tr>
-						</c:forEach>
-						
-						
+						<c:if test="${bMap.pList!=null}">
+							<c:forEach items="${bMap.pList}" var="postVo">
+								<tr>
+									<td class="text-left"><a href="">${postVo.postTitle}</a></td>
+									<td class="text-right">${postVo.regDate}</td>
+								</tr>
+							</c:forEach>
+						</c:if>
 					</table>
 				</div>
 				<!-- //list -->

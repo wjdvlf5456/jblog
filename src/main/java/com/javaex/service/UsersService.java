@@ -44,9 +44,11 @@ public class UsersService {
 		
 		if (check(usersVo)==false) {
 			//중복된 아이디가 있을 시
+			System.out.println("블로그 생성 실패");
 			return 0;
 			
 		} else {
+			System.out.println("블로그 생성");
 			int count = usersDao.usersInsert(usersVo);
 			
 			//블로그도 생성
@@ -60,7 +62,8 @@ public class UsersService {
 			cVo.setCateName("미분류");
 			cVo.setDescription("기타내용 작성 요");
 			
-			cateDao.cateInsert(cVo);
+			int cateCnt = cateDao.cateInsert(cVo);
+			System.out.println(cateCnt + "개의 카테고리 등록");
 
 			return count;
 		}

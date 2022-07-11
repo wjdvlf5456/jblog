@@ -30,7 +30,7 @@ public class UsersController {
 	};
 	
 	// ===================================  로그인 ===================================
-	@RequestMapping(value = "login", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/login", method = {RequestMethod.GET, RequestMethod.POST})
 	public String login(@ModelAttribute UsersVo usersVo, HttpSession session) {
 		System.out.println("UsersController > login");
 		
