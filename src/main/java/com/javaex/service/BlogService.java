@@ -44,9 +44,16 @@ public class BlogService {
 		BlogVo blogVo = blogDao.getBlog(id);
 		UsersVo uVo = usersDao.selectUsersInfo(id);
 		List<CategoryVo> cList = cateDao.cateList(id);
+		System.out.println("cList:" + cList.toString());
 		
 		List<PostVo> pList= postDao.postList(cList.get(0).getCateNo());
-		PostVo pVo = pList.get(0);
+		PostVo pVo = new PostVo();
+		if (pList.size()<1) {// 아직 포스트가 하나도 없을 때 오류 방지
+			
+		} else {	
+			pVo = pList.get(0);
+			
+		}
 		System.out.println(pVo);
 		
 		//블로그 메인에 넣어줄 정보들 맵으로 넣기
