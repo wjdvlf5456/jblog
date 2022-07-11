@@ -2,6 +2,8 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.CategoryService;
 import com.javaex.vo.CategoryVo;
+import com.javaex.vo.UsersVo;
 
 @Controller
 public class CategoryController {
@@ -23,11 +26,20 @@ public class CategoryController {
 	
 	// =================================== 카테고리 메인 ===================================
 	@RequestMapping(value = "/{id}/admin/category")
-	public String showCategory(@PathVariable("id")String id){
+	public String showCategory(@PathVariable("id")String id,HttpSession session){
 		System.out.println("CategoryController > showCategory");
 		
+		UsersVo authUser = (UsersVo)session.getAttribute("authUser");
+		//현재 접속중인 유저의 아이디
+		String crtId = authUser.getId();
+	
+		System.out.println(crtId);
 		
-		return "blog/admin/blog-admin-cate";
+		if (crtId.equals(id)) {
+			return "blog/admin/blog-admin-cate";
+		} else {
+			return "redirect:/error";
+		}
 	};
 	
 	

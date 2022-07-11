@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.javaex.service.BlogService;
 import com.javaex.vo.BlogVo;
 import com.javaex.vo.PostVo;
+import com.javaex.vo.UsersVo;
 
 @Controller
 public class BlogController {
@@ -47,6 +48,17 @@ public class BlogController {
 		return "blog/blog-main";
 	};
 	
+	// =================================== 내 블로그 관리 ===================================
+	@RequestMapping(value = "/error")
+	public String errorPage() {
+		System.out.println("BlogController > errorPage");
+		
+		return "error/403";
+	};
+	
+	
+	
+	
 	/*
 	// ========================== 회원가입 시 블로그 생성(ajax) ===========================
 	@ResponseBody
@@ -61,10 +73,22 @@ public class BlogController {
 	
 	// =================================== 내 블로그 관리 ===================================
 	@RequestMapping(value = "/{id}/admin/basic")
-	public String adminBlog(@PathVariable("id")String id) {
+	public String adminBlog(@PathVariable("id")String id,HttpSession session) {
 		System.out.println("BlogController > adminBlog");
 		
-		return "blog/admin/blog-admin-basic";
+		UsersVo authUser = (UsersVo)session.getAttribute("authUser");
+		//현재 접속중인 유저의 아이디
+		String crtId = authUser.getId();
+	
+		System.out.println(crtId);
+		
+		if (crtId.equals(id)) {
+			return "blog/admin/blog-admin-basic";
+		} else {
+			return "redirect:/error";
+
+		}
+		
 	};
 	
 	// =================================== 블로그 제목 또는 사진 변경  ===================================

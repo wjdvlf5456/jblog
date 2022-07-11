@@ -16,38 +16,45 @@ import com.javaex.service.PostService;
 import com.javaex.vo.BlogVo;
 import com.javaex.vo.CategoryVo;
 import com.javaex.vo.PostVo;
+import com.javaex.vo.UsersVo;
 
 @Controller
 public class PostController {
-	
+
 	@Autowired
 	private PostService postService;
-	
-	
-	// ===================================  내 블로그 post 관리(글 작성폼) ===================================
-	@RequestMapping(value = "/{id}/admin/writeForm",method = {RequestMethod.GET, RequestMethod.POST})
-	public String writeForm(@PathVariable("id")String id, Model model) {
+
+	// ================================ 내 블로그 post 관리(글 작성폼) ================================
+	@RequestMapping(value = "/{id}/admin/writeForm", method = { RequestMethod.GET, RequestMethod.POST })
+	public String writeForm(@PathVariable("id") String id, Model model, HttpSession session) {
 		System.out.println("PostController > writeForm");
-		System.out.println(id);
-		List<CategoryVo> cateList = postService.getPostCateList(id);
-		model.addAttribute("cateList",cateList);
-		
-		return "blog/admin/blog-admin-write";
+		UsersVo authUser = (UsersVo) session.getAttribute("authUser");
+		// 현재 접속중인 유저의 아이디
+		String crtId = authUser.getId();
+		if (crtId.equals(id)) {
+			List<CategoryVo> cateList = postService.getPostCateList(id);
+			model.addAttribute("cateList", cateList);
+
+			return "blog/admin/blog-admin-write";
+		} else {
+			return "redirect:/error";
+		}
+
 	};
 
-	// ===================================  내 블로그 글작성하기 ===================================
-	@RequestMapping(value = "/post",method = {RequestMethod.GET, RequestMethod.POST})
-	public String post(@ModelAttribute PostVo postVo,HttpSession session) {
-		System.out.println("PostController > post"); 
-		
+	// ================================ 내 블로그 글작성하기 ================================
+	@RequestMapping(value = "/post", method = { RequestMethod.GET, RequestMethod.POST })
+	public String post(@ModelAttribute PostVo postVo, HttpSession session) {
+		System.out.println("PostController > post");
+
 		int count = postService.postInsert(postVo);
 		System.out.println(count + "개의 글을 등록하였습니다.");
-		
-		//blogVo 세션으로 id 불러와 리다이렉트
-		BlogVo bVo = (BlogVo)session.getAttribute("blogVo");
+
+		// blogVo 세션으로 id 불러와 리다이렉트
+		BlogVo bVo = (BlogVo) session.getAttribute("blogVo");
 		String id = bVo.getId();
-		
-		return "redirect:/"+ id +"/admin/writeForm";
+
+		return "redirect:/" + id + "/admin/writeForm";
 	};
-	
+
 }
