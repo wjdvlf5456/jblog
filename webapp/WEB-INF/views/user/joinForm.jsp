@@ -33,7 +33,7 @@
 					<tr>
 						<td><label for="txtId">아이디</label></td>
 						<td><input id="txtId" type="text" name="id"></td>
-						<td><button id="btnIdCheck" type="button">아이디체크</button></td>
+						<td><button id="btnIdCheck" type="button" value="result">아이디체크</button></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -114,7 +114,7 @@ $("#btnIdCheck").on("click", function() {
 $("#btnJoin").on("click",function(){
 	//입력값들 가져오기
 	var id = $("#txtId").val();
-	var check = $("#btnIdCheck").val();
+	var check = $("#tdMsg").css("color");
 	var password = $("#txtPassword").val();
 	var userName = $("#txtUserName").val();
 	var agree = $("#chkAgree:checked").length;
@@ -130,7 +130,7 @@ $("#btnJoin").on("click",function(){
 		alert("아이디를 입력해주세요");
 		return false;
 		
-	} else if(check=="" || check==null){
+	} else if(check!="rgb(0, 0, 255)"){	//#tdMsg를 파랑색으로 css를 부여하게 했으니 파랑이면 성공
 		alert("아이디 중복체크를 해주세요");
 		return false;
 		
