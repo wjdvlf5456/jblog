@@ -48,21 +48,21 @@
 			<!-- profilecate_area -->
 			
 			<div id="post_area">
-				
+				<c:forEach items="${bMap.pList}" var="postVo">
 				<div id="postBox" class="clearfix">
-						<div id="postTitle" class="text-left"><strong>선택한 카테고리의 최근 포스트 제목</strong></div>
-						<div id="postDate" class="text-left"><strong>2020/07/23</strong></div>
+						<div id="postTitle" class="text-left"><strong>${postVo.postTitle}</strong></div>
+						<div id="postDate" class="text-left"><strong>${postVo.regDate}</strong></div>
 						<div id="postNick">${bMap.userName}</div>
 				</div>
 				<!-- //postBox -->
 			
 				<div id="post">
-				최신 포스트글의 content
+				${postVo.postContent}
 				</div>
+				</c:forEach>
 				<!-- //post -->
 				
 				<!-- 글이 없는 경우 -->
-				<!-- 
 				<div id="postBox" class="clearfix">
 							<div id="postTitle" class="text-left"><strong>등록된 글이 없습니다.</strong></div>
 							<div id="postDate" class="text-left"><strong></strong></div>
@@ -71,7 +71,7 @@
 			    
 				<div id="post" >
 				</div>
-				-->
+				
 				
 				<div id="list">
 					<div id="listTitle" class="text-left"><strong>카테고리의 글</strong></div>

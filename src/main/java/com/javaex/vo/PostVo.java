@@ -1,36 +1,34 @@
 package com.javaex.vo;
 
 public class PostVo {
-	
-	//필드
+
+	// 필드
 	private int postNo;
 	private int cateNo;
 	private String postTitle;
 	private String postContent;
 	private String regDate;
-	
-	//생성자
+	private String userName;
+
+	// 생성자
 	public PostVo() {
-		
+
 	}
-	
-	
-	
+
 	public PostVo(int cateNo) {
 		this.cateNo = cateNo;
 	}
 
-
-
-	public PostVo(int postNo, int cateNo, String postTitle, String postContent, String regDate) {
+	public PostVo(int postNo, int cateNo, String postTitle, String postContent, String regDate, String userName) {
 		this.postNo = postNo;
 		this.cateNo = cateNo;
 		this.postTitle = postTitle;
 		this.postContent = postContent;
 		this.regDate = regDate;
+		this.userName = userName;
 	}
 
-	//메소드 - gs
+	// 메소드 - gs
 	public int getPostNo() {
 		return postNo;
 	}
@@ -70,12 +68,19 @@ public class PostVo {
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
-	
-	//메소드 - 일반
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	@Override
 	public String toString() {
 		return "PostVo [postNo=" + postNo + ", cateNo=" + cateNo + ", postTitle=" + postTitle + ", postContent="
-				+ postContent + ", regDate=" + regDate + "]";
+				+ postContent + ", regDate=" + regDate + ", userName=" + userName + "]";
 	}
 
 }

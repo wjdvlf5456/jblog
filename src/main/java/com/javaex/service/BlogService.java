@@ -45,7 +45,7 @@ public class BlogService {
 		UsersVo uVo = usersDao.selectUsersInfo(id);
 		List<CategoryVo> cList = cateDao.cateList(id);
 		
-		List<PostVo> pList= postDao.postList(cList.get(cList.size()-1).getCateNo());
+		List<PostVo> pList= postDao.postList(cList.get(0).getCateNo());
 		
 		//블로그 메인에 넣어줄 정보들 맵으로 넣기
 		Map<String,Object> pMap = new HashMap<String,Object>();

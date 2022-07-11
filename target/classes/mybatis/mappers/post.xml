@@ -8,9 +8,10 @@
 					cateNo, 
 					postTitle, 
 					postContent, 
-					regDate 
+					regDate
 			from post 
-			where cateNo = #{cateNo}
+			where cateNo = #{cateNo} 
+			order by cateNo desc
 		]]>
 	</select>
 	<select id="getPost" parameterType="int" resultType="PostVo">
