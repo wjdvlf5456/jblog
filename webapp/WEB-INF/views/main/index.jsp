@@ -31,7 +31,35 @@
 			</div>
 		</form>
 
-		<div id="resultList"></div>
+		<div id="resultList">
+			<table border="1">
+				<colgroup>
+					<col style="width: 20%;">
+				</colgroup>
+			<c:forEach items="${uList}" var="usersVo">
+				<tbody>
+					<tr>
+						<c:choose>
+							<c:when test="${usersVo.logoFile!=null}">
+								<td>
+									<img id="proImg" src="${pageContext.request.contextPath}/upload/${usersVo.logoFile}">
+								</td>
+							</c:when>
+							<c:otherwise>
+								<td>
+									<img id="proImg" src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg">
+								</td>
+							</c:otherwise>
+						</c:choose>
+						<td>${usersVo.blogTitle}</td>
+						<td>${usersVo.userName}</td>
+						<td>${usersVo.joinDate}</td>
+					</tr>
+				</tbody>
+			</c:forEach>
+			</table>
+		
+		</div>
 
 		<!-- 메인 푸터  자리-->
 		<c:import url="/WEB-INF/views/includes/main-footer.jsp"></c:import>

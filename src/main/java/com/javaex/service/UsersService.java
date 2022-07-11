@@ -1,5 +1,7 @@
 package com.javaex.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,13 @@ public class UsersService {
 	private BlogDao blogDao;
 	@Autowired
 	private CategoryDao cateDao;
+	
+	public List<UsersVo> getUserList(){
+		List<UsersVo> userList = usersDao.getUserList();
+		
+		return userList;
+	};
+	
 	
 	//로그인용 사용자번호와 이름 가져오기
 	public UsersVo getUser(UsersVo usersVo) {

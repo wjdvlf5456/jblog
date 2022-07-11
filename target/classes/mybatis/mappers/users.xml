@@ -2,31 +2,56 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="users">
+	<select id="userList" resultType="UsersVo">
+		<![CDATA[
+			select  u.userNo, 
+					u.id, 
+					u.userName, 
+					to_char(u.joinDate, 'yy-mm-dd')joinDate, 
+					b.blogTitle, 
+					b.logoFile 
+			from users u 
+			left outer join blog b 
+			on b.id = u.id 
+			order by u.userNo desc  
+		]]>
+	</select>
+	
 	<!-- 로그인용 -->
 	<select id="userLogin" parameterType="UsersVo" resultType="UsersVo">
+		<![CDATA[
 			select  userNo, 
 					userName, 
 					id 
 			from users 
 			where id = #{id} 
 			and password = #{password}
+		]]>
 	</select>
 	
+	<!-- 유저이름,id가져오기 -->
 	<select id="selectUsersInfo" parameterType="String" resultType="UsersVo">
+		<![CDATA[
 			select 	userName, 
 					id 
 			from users 
 			where id = #{id} 
+		]]>
 	</select>
 	
+	<!-- 중복체크 -->
 	<select id="check" parameterType="String" resultType="int">
+		<![CDATA[
 		select count(id) count 
 		from users 
 		where id = #{id}
+		]]>
 	</select>
 
 	<insert id="usersInsert">
+		<![CDATA[
 		insert into users 
 		values(seq_users_no.nextval, #{id}, #{userName},#{password},sysdate) 
+		]]>
 	</insert>
 </mapper>

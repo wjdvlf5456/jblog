@@ -1,5 +1,7 @@
 package com.javaex.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,6 +13,14 @@ public class UsersDao {
 	
 	@Autowired
 	private SqlSession sqlSession;
+	
+	public List<UsersVo> getUserList(){
+		List<UsersVo> userList = sqlSession.selectList("users.userList");
+		System.out.println(userList);
+		
+		return userList;
+	};
+	
 	
 	public UsersVo userLogin(UsersVo usersVo) {
 		UsersVo uVo = sqlSession.selectOne("users.userLogin",usersVo);
